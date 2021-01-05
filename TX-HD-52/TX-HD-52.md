@@ -4,8 +4,7 @@ Madeline Kinnaird
 
 # How effective was letter writing in Texas House District 52?
 
-![](TX-HD-52_files/tx-hd-52-map1.JPG)<!-- -->
-
+![](TX-HD-52_files/figure-gfm/tx-hd-52-map1.JPG)<!-- -->
 # Dependent Variable
 
 ### Voted in 2020 Election
