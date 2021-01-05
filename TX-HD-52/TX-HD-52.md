@@ -4,7 +4,7 @@ Madeline Kinnaird
 
 # How effective was letter writing in Texas House District 52?
 
-![](/data/tx-hd-52-map1.JPG)
+![](TX-HD-52_files/tx-hd-52-map1.JPG)<!-- -->
 
 # Dependent Variable
 
@@ -35,7 +35,7 @@ create.count.index <- function(listOfColums) {
 
 ``` r
 ## dummy variable for Sex
-dta$female = as.numeric(dta$Sex == "F") 
+dta$female = as.numeric(dta$Sex == "F")
 
 ## Dummy variables for city, "Round Rock" is omitted
 dta$austin = as.numeric(dta$City == "Austin")
@@ -103,15 +103,15 @@ various model specifications/representations.
 #### Specification \#1: No past votes
 
 ``` r
-results1 <- glm(voted ~ scLetter + 
-                  likelyRep  + 
-                  likelyDem + 
-                  austin + 
-                  georgetown + 
-                  hutto + 
-                  taylor + 
-                  inconsistentAddress  + 
-                  responseIndex, 
+results1 <- glm(voted ~ scLetter +
+                  likelyRep  +
+                  likelyDem +
+                  austin +
+                  georgetown +
+                  hutto +
+                  taylor +
+                  inconsistentAddress  +
+                  responseIndex,
                 data = dta, family = binomial(link = "probit"))
 
 probitmfx(results1, data = dta, atmean = FALSE)
@@ -119,7 +119,7 @@ probitmfx(results1, data = dta, atmean = FALSE)
 
     ## Call:
     ## probitmfx(formula = results1, data = dta, atmean = FALSE)
-    ## 
+    ##
     ## Marginal Effects:
     ##                          dF/dx  Std. Err.       z     P>|z|    
     ## scLetter             0.1731955  0.0233973  7.4024 1.338e-13 ***
@@ -127,15 +127,15 @@ probitmfx(results1, data = dta, atmean = FALSE)
     ## likelyDem            0.3133431  0.0591084  5.3012 1.151e-07 ***
     ## austin               0.0867580  0.0485806  1.7859  0.074122 .  
     ## georgetown           0.2555401  0.0089086 28.6846 < 2.2e-16 ***
-    ## hutto                0.0554722  0.0183950  3.0156  0.002565 ** 
+    ## hutto                0.0554722  0.0183950  3.0156  0.002565 **
     ## taylor              -0.1437322  0.0299044 -4.8064 1.537e-06 ***
     ## inconsistentAddress -0.2755153  0.0300388 -9.1720 < 2.2e-16 ***
     ## responseIndex       -0.0043555  0.0153421 -0.2839  0.776495    
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
+    ##
     ## dF/dx is for discrete change for the following variables:
-    ## 
+    ##
     ## [1] "scLetter"            "likelyRep"           "likelyDem"          
     ## [4] "austin"              "georgetown"          "hutto"              
     ## [7] "taylor"              "inconsistentAddress"
@@ -148,16 +148,16 @@ elections is possibly more civically engaged and likely to vote than
 someone who has voted in 2 presidential elections.
 
 ``` r
-results2 <- glm(voted ~ scLetter + 
-                  likelyRep  + 
-                  likelyDem + 
-                  austin + 
-                  georgetown + 
-                  hutto + 
-                  taylor + 
-                  inconsistentAddress  + 
-                  responseIndex + 
-                  pastElectionVotes, 
+results2 <- glm(voted ~ scLetter +
+                  likelyRep  +
+                  likelyDem +
+                  austin +
+                  georgetown +
+                  hutto +
+                  taylor +
+                  inconsistentAddress  +
+                  responseIndex +
+                  pastElectionVotes,
                 data = dta, family = binomial(link = "probit"))
 
 probitmfx(results2, data = dta, atmean = FALSE)
@@ -165,24 +165,24 @@ probitmfx(results2, data = dta, atmean = FALSE)
 
     ## Call:
     ## probitmfx(formula = results2, data = dta, atmean = FALSE)
-    ## 
+    ##
     ## Marginal Effects:
     ##                          dF/dx  Std. Err.       z     P>|z|    
     ## scLetter             0.0179367  0.0190825  0.9400  0.347242    
     ## likelyRep            0.0177254  0.0746766  0.2374  0.812376    
-    ## likelyDem            0.1316653  0.0472117  2.7888  0.005290 ** 
+    ## likelyDem            0.1316653  0.0472117  2.7888  0.005290 **
     ## austin               0.0998095  0.0436328  2.2875  0.022167 *  
     ## georgetown           0.2569729  0.0083528 30.7648 < 2.2e-16 ***
-    ## hutto                0.0505379  0.0172636  2.9274  0.003418 ** 
+    ## hutto                0.0505379  0.0172636  2.9274  0.003418 **
     ## taylor              -0.1040063  0.0262244 -3.9660 7.308e-05 ***
     ## inconsistentAddress -0.1717971  0.0255634 -6.7204 1.812e-11 ***
     ## responseIndex       -0.0162592  0.0144006 -1.1291  0.258869    
     ## pastElectionVotes    0.0309328  0.0017127 18.0608 < 2.2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
+    ##
     ## dF/dx is for discrete change for the following variables:
-    ## 
+    ##
     ## [1] "scLetter"            "likelyRep"           "likelyDem"          
     ## [4] "austin"              "georgetown"          "hutto"              
     ## [7] "taylor"              "inconsistentAddress"
@@ -198,18 +198,18 @@ Unsurprisingly, presidential is one of the most indicative of 2020
 voting outcome.
 
 ``` r
-results3 <- glm(voted ~ scLetter + 
-                  likelyRep  + 
-                  likelyDem + 
-                  austin + 
-                  georgetown + 
-                  hutto + 
-                  taylor + 
-                  inconsistentAddress  + 
-                  responseIndex + 
-                  presidentVoted + 
-                  primaryVoted + 
-                  otherVoted, 
+results3 <- glm(voted ~ scLetter +
+                  likelyRep  +
+                  likelyDem +
+                  austin +
+                  georgetown +
+                  hutto +
+                  taylor +
+                  inconsistentAddress  +
+                  responseIndex +
+                  presidentVoted +
+                  primaryVoted +
+                  otherVoted,
                 data = dta, family = binomial(link = "probit"))
 
 probitmfx(results3, data = dta, atmean = FALSE)
@@ -217,12 +217,12 @@ probitmfx(results3, data = dta, atmean = FALSE)
 
     ## Call:
     ## probitmfx(formula = results3, data = dta, atmean = FALSE)
-    ## 
+    ##
     ## Marginal Effects:
     ##                          dF/dx  Std. Err.       z     P>|z|    
-    ## scLetter            -0.0460262  0.0175917 -2.6164 0.0088874 ** 
+    ## scLetter            -0.0460262  0.0175917 -2.6164 0.0088874 **
     ## likelyRep            0.0012656  0.0737583  0.0172 0.9863105    
-    ## likelyDem            0.1394698  0.0473474  2.9457 0.0032226 ** 
+    ## likelyDem            0.1394698  0.0473474  2.9457 0.0032226 **
     ## austin               0.0888381  0.0433292  2.0503 0.0403348 *  
     ## georgetown           0.2562950  0.0154731 16.5639 < 2.2e-16 ***
     ## hutto                0.0366079  0.0166990  2.1922 0.0283641 *  
@@ -234,9 +234,9 @@ probitmfx(results3, data = dta, atmean = FALSE)
     ## otherVoted           0.0283490  0.0073422  3.8611 0.0001129 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
+    ##
     ## dF/dx is for discrete change for the following variables:
-    ## 
+    ##
     ## [1] "scLetter"            "likelyRep"           "likelyDem"          
     ## [4] "austin"              "georgetown"          "hutto"              
     ## [7] "taylor"              "inconsistentAddress"
